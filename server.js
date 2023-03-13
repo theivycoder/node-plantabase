@@ -2,7 +2,8 @@ import express from 'express';
 import cors from 'cors';
 const app = express();
 
-import testPlant from './app/routes/testPlant.routes.js';
+import testPlantRoutes from './app/routes/testPlant.routes.js';
+import authRoutes from './app/routes/auth.routes.js';
 
 var corsOptions = {
     origin: "http://localhost:8100"
@@ -16,7 +17,8 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/testPlant', testPlant);
+app.use('/testPlant', testPlantRoutes);
+app.use('/auth', authRoutes);
 
 // simple route
 app.get("/", (req, res) => {
