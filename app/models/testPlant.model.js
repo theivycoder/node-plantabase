@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
-import { Schema, model } from 'mongoose';
+const { Schema, model } = mongoose;
 
-const testPlantSchema = new Schema({
+const testPlantSchema = new mongoose.Schema({
     name: String,
     scname: String,
     description: String
-}, { timestamps: true });
+}, 
+    { timestamps: true }
+);
 
 testPlantSchema.virtual('id').get(function() {
     return this._id.toHexString();

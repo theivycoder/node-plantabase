@@ -3,10 +3,9 @@ import mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
 
+// Connecting to the database
 const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-
-// import testPlant from "./testPlant.model.js";
 
 export default db;

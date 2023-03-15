@@ -1,8 +1,6 @@
-// import { TestPlant } from '../models/testPlant.model.js';
 import TestPlant from "../models/testPlant.model.js";
-// const TestPlant = models.Testplant;
 
-// Create and Save a new testPlant
+// Create a new testPlant
 const create = (req, res) => {
     const testPlant = new TestPlant({
         name: req.body.name,
