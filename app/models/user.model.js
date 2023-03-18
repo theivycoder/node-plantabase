@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
+import passportlocalmongoose from "passport-local-mongoose";
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -42,6 +43,8 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.comparePassword = async function validatePassword(data) {
     return bcrypt.compare(data, this.password);
 };
+
+userSchema.plugin(passportlocalmongoose);
 
 const User = mongoose.model("User", userSchema);
 

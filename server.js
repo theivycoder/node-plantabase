@@ -3,15 +3,27 @@ import cors from 'cors';
 
 const app = express();
 
+import User from './app/models/user.model.js';
+import authController from './app/controllers/auth.controller.js';
+import LocalStrategy from 'passport-local';
+import bodyParser from 'body-parser';
+import passport from 'passport';
+
+
+
 // import routes
 import testPlantRoutes from './app/routes/testPlant.routes.js';
 import userRoutes from './app/routes/user.routes.js';
+
+// Passport config
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
 
 var corsOptions = {
     origin: "http://localhost:8100"
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions), passport.initialize());
 
 // parse requests of content-type - application/json
 app.use(express.json());
